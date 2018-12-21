@@ -3,6 +3,7 @@
 * Given a string S, find the longest palindromic substring in S.
 * enumeraion method
 * Time complexity: O(n^2)
+* Medium
 */
 
 public class Solution {

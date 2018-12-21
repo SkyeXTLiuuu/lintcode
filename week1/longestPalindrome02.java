@@ -3,6 +3,7 @@
 * Given a string S, find the longest palindromic substring in S.
 * dynamic programming
 * Time complexity: O(n^2) + space complexity: O(n ^ 2)
+* Medium
 */
 
 public class Solution {
@@ -34,7 +35,7 @@ public class Solution {
         }
         for(int i = n - 3; i >= 0; i --){
             for(int j = i + 2; j < n; j ++){
-              // mark new substrings based on existing results 
+              // mark new substrings based on existing results
                 palindrome[i][j] = palindrome[i + 1][j - 1] && s.charAt(i) == s.charAt(j);
                 if(palindrome[i][j] && j - i + 1 > longest){
                     longest = j - i + 1;
