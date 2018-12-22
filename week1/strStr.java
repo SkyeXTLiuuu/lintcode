@@ -3,7 +3,7 @@
 * For a given source string and a target string, output the first index(from 0) of target string in source string.
 * example: source = "source", target = "target", return -1
 * source = "abcdabcdefg", target = "bcd", return 1
-* Time complexity: O(n)
+* Time complexity: O(m * n + n)
 * Easy
 */
 
