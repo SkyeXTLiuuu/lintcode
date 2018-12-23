@@ -16,6 +16,7 @@
 * char: # a # b # b # a #
 * RL:   1 2 1 2 5 2 1 2 1
 * RL-1: 0 1 0 1 4 1 0 1 0
+* Time complexity: O(n)
 */
 public class Solution {
     /**
@@ -51,7 +52,7 @@ public class Solution {
                 }
                 len ++;
             }
-            // update len 
+            // update len
             if(len > longest){
                 longest = len;
                 mid = i;
