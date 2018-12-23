@@ -12,7 +12,7 @@ public class Solution {
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         // write your code here
         List<List<Integer>> results = new ArrayList<List<Integer>>();
-        if(nums == null){
+        if (nums == null) {
             return results;
         }
         // sort for detecting duplicates
@@ -25,14 +25,14 @@ public class Solution {
     private void subsetHelper(int[] nums, List<List<Integer>> results, int startIndex, List<Integer> subset){
         // deep copy
         results.add(new ArrayList(subset));
-        for(int i = startIndex; i < nums.length; i ++){
+        for (int i = startIndex; i < nums.length; i ++) {
             // if the number is the same as the number before it and the number before it has not been added
             // [1] [1] will satisfy the if statement
             // [1, 1] will not because i != startIndex when we want to add the second 1
-            if(i != 0 && nums[i] == nums[i - 1] && i != startIndex){
+            if (i != 0 && nums[i] == nums[i - 1] && i != startIndex) {
                 continue;
             }
-            // backtacking 
+            // backtacking
             subset.add(nums[i]);
             subsetHelper(nums, results, i + 1, subset);
             subset.remove(subset.size() - 1);
