@@ -1,6 +1,6 @@
 /**
 * Bidirectional BFS
-* Time complexityL: O(2 * X^(N/2)) N层 每层的判断量为X
+* Time complexity: O(2 * X^(N/2)) N层 每层的判断量为X
 */
 
 public class Solution {

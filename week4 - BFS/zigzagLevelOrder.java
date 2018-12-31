@@ -1,7 +1,7 @@
 /**
 * Binary Tree Zigzag Level Order Traversal
 * Return the zigzag level order traversal of its nodes' values
-* Time complexityL: O(N)
+* Time complexity: O(N)
 */
 
 /**

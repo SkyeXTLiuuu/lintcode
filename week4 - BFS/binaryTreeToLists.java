@@ -1,7 +1,7 @@
 /**
 * Convert Binary Tree to Linked Lists by Depth
 * Creates a linked list of all the nodes at each depth
-* Time complexityL: O(N)
+* Time complexity: O(N)
 */
 
 /**

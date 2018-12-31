@@ -1,7 +1,7 @@
 /**
 * Serialize and Deserialize Binary Tree
 * Serialize and deserialize a binary tree
-* Time complexityL: O(N)
+* Time complexity: O(N)
 */
 
 /**

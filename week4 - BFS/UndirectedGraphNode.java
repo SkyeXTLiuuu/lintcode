@@ -1,7 +1,7 @@
 /**
 * Clone Graph
 * Clone an undirected graph
-* Time complexityL: O(|V| + |E|)
+* Time complexity: O(|V| + |E|)
 */
 
 /**

@@ -1,7 +1,7 @@
 /**
 * Word Ladder
 * Find the length of shortest transformation sequence from start to end
-* Time complexityL: 
+* Time complexity: 
 */
 
 public class Solution {

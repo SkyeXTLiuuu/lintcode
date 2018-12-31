@@ -1,7 +1,7 @@
 /**
 * Topological Sorting
 * Find any topological order for the given graph.
-* Time complexityL: O(|V| + |E|)
+* Time complexity: O(|V| + |E|)
 */
 
 /**
