@@ -1,3 +1,11 @@
+/**
+* Word Ladder II
+* Given two words (start and end), and a dictionary, find all shortest transformation sequence(s) from start to end
+*   Only one letter can be changed at a time
+*   Each intermediate word must exist in the dictionary
+* BFS + DFS 
+*/
+
 public class Solution {
     /*
      * @param start: a string
@@ -7,67 +15,75 @@ public class Solution {
      */
     public List<List<String>> findLadders(String start, String end, Set<String> dict) {
         // write your code here
-        if(dict == null){
-            return null;
+        List<List<String>> result = new ArrayList<>();
+        if (dict == null || dict.size() == 0) {
+            return result;
         }
-        List<List<String>> result = new ArrayList<List<String>>();
-        dict.add(start);
+
         dict.add(end);
-        Map<String, List<String>> map = new HashMap<>();
-        Map<String, Integer> distance = new HashMap<>();
-        bfs(start, map, distance, dict);
-        dfs(start, end, map, distance, dict, result, new ArrayList<String>());
+        Map<String, Integer> distance = new HashMap<String, Integer>();
+        Map<String, List<String>> map = new HashMap<String, List<String>>();
+
+        bfs(start, end, dict, distance, map);
+        List<String> path = new ArrayList<String>();
+        dfs(end, start, map, distance, path, result);
         return result;
     }
 
-    public void dfs(String start, String crt, Map<String, List<String>> map, Map<String, Integer> distance, Set<String> dict, List<List<String>> result, List<String> list){
-        list.add(crt);
-        if(crt.equals(start)){
-            Collections.reverse(list);
-            result.add(new ArrayList(list));
-            Collections.reverse(list);
+    public void dfs(String crt, String start, Map<String, List<String>> map, Map<String, Integer> distance, List<String> path, List<List<String>> result) {
+        path.add(crt);
+        if (crt.equals(start)) {
+            Collections.reverse(path);
+            result.add(new ArrayList<String>(path));
+            Collections.reverse(path);
         }
-        else{
-            for(String s: map.get(crt)){
-                if(distance.containsKey(s) && distance.get(s) + 1 == distance.get(crt)){
-                    dfs(start, s, map, distance, dict, result, list);
+        else {
+            for (String next: map.get(crt)) {
+            if (distance.containsKey(next) && distance.get(crt) == distance.get(next) + 1) {
+                    dfs(next, start, map, distance, path, result);
                 }
             }
         }
-        list.remove(list.size() - 1);
+        path.remove(path.size() - 1);
     }
 
-    public void bfs(String start, Map<String, List<String>> map, Map<String, Integer> distance, Set<String> dict){
-        Queue<String> queue = new LinkedList<String>();
+
+    public void bfs(String start, String end, Set<String> dict, Map<String, Integer> distance, Map<String, List<String>> map) {
+
+        Queue<String> queue = new LinkedList<>();
         queue.offer(start);
         distance.put(start, 0);
-        for(String s: dict){
+        for (String s: dict) {
             map.put(s, new ArrayList<String>());
         }
-        while(!queue.isEmpty()){
-            String cur = queue.poll();
-            for(String s: getNext(cur, dict)){
-                map.get(s).add(cur);
-                if(!distance.containsKey(s)){
-                    distance.put(s, distance.get(cur) + 1);
-                    queue.offer(s);
+
+        while (!queue.isEmpty()) {
+            String word = queue.poll();
+            List<String> neighbor = getNeighbor(word, dict);
+
+            for (String next: neighbor) {
+                map.get(next).add(word);
+                if (!distance.containsKey(next)) {
+                    distance.put(next, distance.get(word) + 1);
+                    queue.offer(next);
                 }
             }
         }
     }
 
-    public List<String> getNext(String cur, Set<String> dict){
-        List<String> result = new ArrayList<String>();
-        for(int i = 0; i < cur.length(); i ++){
-            for(char c = 'a'; c <= 'z'; c ++){
-                if(cur.charAt(i) != c){
-                String newWord = cur.substring(0, i) + c + cur.substring(i + 1);
-                    if(dict.contains(newWord)){
-                        result.add(newWord);
-                    }
+    public List<String> getNeighbor(String word, Set<String> dict) {
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < word.length(); i ++) {
+            for (char c = 'a'; c <= 'z'; c ++) {
+                String neighbor = word.substring(0, i) + c + word.substring(i + 1, word.length());
+                if (neighbor.equals(word)) {
+                    continue;
+                }
+                if (dict.contains(neighbor)) {
+                    list.add(neighbor);
                 }
             }
         }
-        return result;
+        return list;
     }
 }
